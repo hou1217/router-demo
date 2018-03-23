@@ -1,0 +1,16 @@
+/*菜单栏*/
+.menu-group{
+	cursor: pointer;
+}
+.menu-group .menu-sub-item:hover{
+	background-color: #337ab7;
+  border-color: #337ab7;
+  color:#fff;
+}
+/*页面内部的卡片*/
+.card{
+  display: none;
+}
+.card-active{
+  display: block;
+}
