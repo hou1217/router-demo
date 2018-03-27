@@ -1,83 +1,65 @@
-var router={
-    changeMenu:function(id,res){
-		//点击菜单下的li
-        var menuList= $(id),
-        resText=$(res);
-        if(menuList){
-            menuList.on("click", "li",function(event){
-                //切换菜单栏的颜色
-                $(this).addClass("active").siblings('li').removeClass('active');
-                // console.log($(this).index());
-                
-                var dataTitle = event.target.getAttribute("data-title"),//事件源的data-title属性
-                // index = $(this).index(),
-                // self = this,
-                url = "";
-                //点击首页-重新加载页面
-                if(dataTitle=="index"){
-                    location.reload();
-                }
-                //点击其他菜单-局部刷新页面
-                switch (dataTitle){ //根据data-title属性来判断url的值
-                    case "user":
-                      url="/learngit/ajax/test1.html";
-                      break;
-                    case "choose":
-                      url="/learngit/ajax/test2.html";
-                      break;
-                    case "apply":
-                      url="/learngit/ajax/test3.html";
-                      break;
-                    case "inquire":
-                      url="/learngit/ajax/test4.html";
-                      break;
-                    case "appraise":
-                      url="/learngit/ajax/test5.html";
-                      break;
-                    case "study":
-                      url="/learngit/ajax/test6.html";
-                      break;
-                    case "payment":
-                      url="/learngit/ajax/test7.html";
-                      break;
-                }
-                if(resText){
-                    resText.load(url,function(responseTxt,statusTxt,xhr){
-                        if(statusTxt=="success"){
-                            console.log(dataTitle+"页面加载成功");
-                        }
-                        if(statusTxt=="error"){
-                            console.log("Error: "+xhr.status+": "+xhr.statusText);
-                        }
-                    }); 
-                }
-                
-            }); 
+/*
+MenuRouter构造函数
+*/ 
+var MenuRouter=function(domElement){
+    //检测页面里是否存在router-content类
+    this.dom = domElement;
+    this.dom.ready(function(event){
+        var routerContent = this.querySelectorAll(".router-content");
+        if (!routerContent || routerContent.length == 0) {
+            throw {message: `不存在[router-content]类`};
+    　　} 
+    })
+    this.dom.click(function(event) {
+        var liTarget = event.target;
+        var url = liTarget.getAttribute("data-url");
+        // 检测点击的dom是否含有data-url 属性和 router-item 类
+        if(!url) {
+            throw {message: `不存在[data-url]属性`};
         }
-        
-        
-
-	},
-    //新增按钮
-	addNew:function(id){
-        var add = $(id);
-        if(add){
-            add.on("click",function(event){
-                var dataTitle = event.target.getAttribute("data-title");
-                $(".card").removeClass("card-active");
-                $("#"+dataTitle).addClass("card-active");
-            })
+        if(!$(liTarget).hasClass('router-item')) {
+            throw {message: `不存在[router-item]属性`};
         }
-    },
-
-    // 返回主卡片
-    returnLast:function(id){
-        var last = $(id);
-        if(last){
-            last.on("click",function(event){
-                $(".card").removeClass("card-active");
-                $("#indexCard").addClass("card-active");
-            })
+        var contentDomSelector = liTarget.getAttribute("data-url");
+        var routerItems = this.getElementsByClassName("router-item");
+        for(i=0;i<routerItems.length;i++){
+            routerItems[i].classList.remove("active"); //先去除所有li的 active 类
         }
-    },
+        liTarget.classList.add("active");//再给点击的li添加active 类
+        if(contentDomSelector=="index") {
+            location.reload(); //如果点击首页则重新加载页面
+        }else{
+            contentDomSelector = ".router-content"; //否则指定渲染的容器
+        }
+        $(contentDomSelector).load(url,function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="success"){
+                console.log(url+"页面加载成功");
+            }
+            if(statusTxt=="error"){
+                console.log("Error: "+xhr.status+": "+xhr.statusText);
+            }
+        }); 
+    });   
+}
+/*
+CardRouter构造函数
+*/ 
+var CardRouter=function(domElement){  
+    this.dom = domElement;
+    this.dom.click(function(event) {
+        //新增按钮
+        var dataTarget = event.target.getAttribute("data-target");
+        if(!dataTarget){
+            // throw {message: `不存在[data-target]属性`};
+            console.log ("不存在[data-target]属性");
+            return;
+        }
+        console.log(dataTarget);
+        var cardItems = this.querySelectorAll(".router-card");
+        var targetCard = this.querySelector(dataTarget);
+        for(i=0;i<cardItems.length;i++){
+            cardItems[i].classList.remove("router-card-active"); //先去除所有card的 active 类
+        }
+        targetCard.classList.add("router-card-active");//再给指定的card添加active 类
+    });
 }

@@ -1,10 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>学生管理系统</title>
+	<meta name="description" content="学生管理系统">
+  <meta name="author" content="houyishuai">
+  <link href="images/favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" href="http://assets.dc.wallan-tech.com/plugins/bootstrap/latest/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
 </head>
 <body>
-  test
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+		<div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">学生管理系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">公共查询</a></li>
+            <li><a href="#">问题反馈</a></li>
+            <li><a href="#">关于系统</a></li>
+            <li><a href="#">注销登陆</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="查找...">
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- 一个router类 -->
+        <div class="router-new">
+          <div class="col-sm-3 col-md-2 sidebar">
+            <!-- router 菜单栏 -->
+            <ul class="menu-group list-group router-menu">
+              <li class="menu-sub-item list-group-item router-item active" data-url="index" id="menu-index">首页</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test1.html">用户管理</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test2.html">选课系统</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test3.html">报名系统</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test4.html">查询系统</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test5.html">学生评教</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test6.html">重学申请</li>
+              <li class="menu-sub-item list-group-item router-item" data-url="/learngit/ajax/test7.html">缴费查询</li>
+            </ul>
+            <!-- end -->
+          </div>
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <!-- router 内容渲染区 -->
+            <div class="router-content">
+              <ol class="breadcrumb">
+                <li><a href="javascript:void(0)">首页</a></li>
+                <!-- <li><a href="#">Library</a></li>
+                <li class="active">Data</li> -->
+              </ol>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>头部</th>
+                      <th>头部</th>
+                      <th>头部</th>
+                      <th>头部</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1,001</td>
+                      <td>Lorem</td>
+                      <td>ipsum</td>
+                      <td>dolor</td>
+                      <td>sit</td>
+                    </tr>
+                    <tr>
+                      <td>1,002</td>
+                      <td>amet</td>
+                      <td>consectetur</td>
+                      <td>adipiscing</td>
+                      <td>elit</td>
+                    </tr>
+                    <tr>
+                      <td>1,003</td>
+                      <td>Integer</td>
+                      <td>nec</td>
+                      <td>odio</td>
+                      <td>Praesent</td>
+                    </tr>
+                    <tr>
+                      <td>1,003</td>
+                      <td>libero</td>
+                      <td>Sed</td>
+                      <td>cursus</td>
+                      <td>ante</td>
+                    </tr>
+                    <tr>
+                      <td>1,004</td>
+                      <td>dapibus</td>
+                      <td>diam</td>
+                      <td>Sed</td>
+                      <td>nisi</td>
+                    </tr>
+                    <tr>
+                      <td>1,005</td>
+                      <td>Nulla</td>
+                      <td>quis</td>
+                      <td>sem</td>
+                      <td>at</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- end -->
+          </div>
+        </div>
+        <!-- end -->
+        
+      </div>
+    </div>
+	<script src="http://assets.dc.wallan-tech.com/plugins/jquery/latest/js/jquery.min.js"></script>
+  <script type="text/javascript" src="http://assets.dc.wallan-tech.com/plugins/bootstrap/latest/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/router.js"></script>
+	<script type="text/javascript">
+		$(function(){
+      var menuDom = $(".router-new");
+      // var menuDom = document.getElementsByClassName("router-menu");
+      var myMenu = new MenuRouter(menuDom);
+		})
+	</script>
 </body>
 </html>

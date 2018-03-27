@@ -1,3 +1,6 @@
+/***
+自定义CSS
+***/
 /*菜单栏*/
 .menu-group{
 	cursor: pointer;
@@ -8,9 +11,9 @@
   color:#fff;
 }
 /*页面内部的卡片*/
-.card{
+.router-card{
   display: none;
 }
-.card-active{
+.router-card-active{
   display: block;
 }
